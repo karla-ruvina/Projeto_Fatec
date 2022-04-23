@@ -1,0 +1,79 @@
+﻿@model EngSw_Imobiliaria.Models.Imovel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+<div class="form-horizontal container" style="padding: 0 3rem;">
+    <div class="row mt-5">
+        <h4>Cadastrar Imóvel</h4>
+        <hr />
+        <h4 class="mt-3">Usuário</h4>
+        <div class="mt-3">
+            <div class="col-md-6">
+                <label class="form-label">CPF/CNPJ</label>
+                @Html.TextBoxFor(model => model.CpfCnpj, new { @class = "form-control" })
+            </div>
+        </div>
+        <h4 class="mt-3">Endereço</h4>
+
+        <div class="form-group row mt-2">
+            <div class="col-md-4">
+                <label class="form-label">CEP</label>
+                @Html.TextBoxFor(model => model.Cep, new { @class = "form-control cep-mask", required = "required" })
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Cidade</label>
+                @Html.TextBoxFor(model => model.Cidade, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Estado</label>
+                @Html.TextBoxFor(model => model.Estado, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Rua</label>
+                @Html.TextBoxFor(model => model.Rua, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Bairro</label>
+                @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Número</label>
+                @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <h4 class="mt-3">Informações do Imóvel</h4>
+    <div class="form-group row mt-2">
+        <div class="row-cols-md-2">
+            <label class="form-label">Descrição do Imóvel</label>
+            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Valor da Diária</label>
+            @Html.TextBoxFor(model => model.ValorDiaria, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row text-center mt-5">
+        <div class="col-md-offset-2 col-md-12">
+            <button type="submit" class="btn btn-primary btn-block salvar">Salvar</button>
+            <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
