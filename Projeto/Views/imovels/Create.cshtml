@@ -1,4 +1,4 @@
-﻿@model EngSw_Imobiliaria.Models.Imovel
+﻿@model Projeto.Models.imovel
 
 @{
     ViewBag.Title = "Create";
@@ -8,63 +8,63 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-}
-<div class="form-horizontal container" style="padding: 0 3rem;">
-    <div class="row mt-5">
-        <h4>Cadastrar Imóvel</h4>
-        <hr />
-        <h4 class="mt-3">Usuário</h4>
-        <div class="mt-3">
-            <div class="col-md-6">
-                <label class="form-label">CPF/CNPJ</label>
-                @Html.TextBoxFor(model => model.CpfCnpj, new { @class = "form-control" })
+
+    <div class="form-horizontal container" style="padding: 0 3rem;">
+        <div class="row mt-5">
+            <h4>Cadastrar Imóvel</h4>
+            <hr />
+            <h4 class="mt-3">Usuário</h4>
+            <div class="mt-3">
+                <div class="col-md-6">
+                    <label class="form-label">CPF/CNPJ</label>
+                    @Html.TextBoxFor(model => model.CpfCnpj, new { @class = "form-control" })
+                </div>
+            </div>
+            <h4 class="mt-3">Endereço</h4>
+
+            <div class="form-group row mt-2">
+                <div class="col-md-4">
+                    <label class="form-label">CEP</label>
+                    @Html.TextBoxFor(model => model.Cep, new { @class = "form-control cep-mask", required = "required" })
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Cidade</label>
+                    @Html.TextBoxFor(model => model.Cidade, new { @class = "form-control" })
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estado</label>
+                    @Html.TextBoxFor(model => model.Estado, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-md-6">
+                    <label class="form-label">Rua</label>
+                    @Html.TextBoxFor(model => model.Rua, new { @class = "form-control" })
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bairro</label>
+                    @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Número</label>
+                    @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+                </div>
             </div>
         </div>
-        <h4 class="mt-3">Endereço</h4>
-
+        <h4 class="mt-3">   Informações do Imóvel</h4>
         <div class="form-group row mt-2">
-            <div class="col-md-4">
-                <label class="form-label">CEP</label>
-                @Html.TextBoxFor(model => model.Cep, new { @class = "form-control cep-mask", required = "required" })
-            </div>
+            <div class="mt-3">
+                <label class="form-label" style="display:block">Descrição do Imóvel</label>
+                @Html.TextAreaFor(model => model.Descricao, new { style = "display: inline-block; margin: 0; padding: .2em; width: auto; min-width: 30em; max-width: 100%; height: auto; min-height: 10em; cursor:text; background-color: #eee; overflow:auto; resize:both;", @class = "form-control" })
 
-            <div class="col-md-4">
-                <label class="form-label">Cidade</label>
-                @Html.TextBoxFor(model => model.Cidade, new { @class = "form-control" })
+                <label class="form-label" style="display: block">Valor da Diária</label>
+                @Html.TextBoxFor(model => model.ValorDiaria, new { style = "width:7em", @class = "form-control" })
             </div>
-
-            <div class="col-md-4">
-                <label class="form-label">Estado</label>
-                @Html.TextBoxFor(model => model.Estado, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group row mt-2">
-            <div class="col-md-6">
-                <label class="form-label">Rua</label>
-                @Html.TextBoxFor(model => model.Rua, new { @class = "form-control" })
-            </div>
-
-            <div class="col-md-4">
-                <label class="form-label">Bairro</label>
-                @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
-            </div>
-
-            <div class="col-md-2">
-                <label class="form-label">Número</label>
-                @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
-            </div>
-        </div>
-    </div>
-    <h4 class="mt-3">Informações do Imóvel</h4>
-    <div class="form-group row mt-2">
-        <div class="row-cols-md-2">
-            <label class="form-label">Descrição do Imóvel</label>
-            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
-        </div>
-        <div class="col-md-2">
-            <label class="form-label">Valor da Diária</label>
-            @Html.TextBoxFor(model => model.ValorDiaria, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group row text-center mt-5">
@@ -73,7 +73,7 @@
             <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
         </div>
     </div>
-
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
