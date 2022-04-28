@@ -48,14 +48,11 @@ namespace Projeto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DataInicial,DataFinal,Ticket,ValorTotal,IdImovel,IdCliente")] reserva reserva)
         {
-            if (ModelState.IsValid)
-            {
+          
                 db.Reservas.Add(reserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-
-            return View(reserva);
+           
         }
 
         // GET: reservas/Edit/5

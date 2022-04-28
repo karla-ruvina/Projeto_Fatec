@@ -48,14 +48,11 @@ namespace Projeto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,CpfCnpj,DataNascimento,Sexo,Cep,Estado,Cidade,Rua,Bairro,Numero,Telefone,Celular,Login,Senha,Email")] usuario usuario)
         {
-            if (ModelState.IsValid)
-            {
+            
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-
-            return View(usuario);
+            
         }
 
         // GET: usuarios/Edit/5

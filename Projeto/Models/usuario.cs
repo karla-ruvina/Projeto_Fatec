@@ -12,7 +12,7 @@ namespace Projeto.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string CpfCnpj { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
         public string Sexo { get; set; }
         public int Cep { get; set; }
         public string Estado { get; set; }

@@ -1,4 +1,4 @@
-﻿@model EngSw_Imobiliaria.Models.Usuario
+﻿@model Projeto.Models.usuario
 
 @{
     ViewBag.Title = "Create";
@@ -34,12 +34,16 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Data de Nascimento</label>
-                    <input class="form-control" data-val="true" data-val-required="O campo Data de Nascimento é obrigatório." id="DataNascimento" name="DataNascimento" placeholder="__/__/____" required="required" />
+                    @Html.TextBoxFor(model => model.DataNascimento, new { @class = "form-control date" })
                 </div>
-                <div class="col-md-4">
+                @*<div class="col-md-4">
                     <label class="form-label">Sexo</label>
-                    @Html.DropDownListFor(model => model.Sexo, (SelectList)ViewBag.Sexo, new { @class = "form-control selectsexo" })
-                </div>
+                    <select class="form-control" name="Sexo" id="Sexo">
+                        <option value="F">Feminino</option>
+                        <option value="M">Masculino</option>
+                        <option value="-">Não Informar</option>
+                    </select>
+                </div>*@
             </div>
 
             <h4 class="mt-3">Endereço</h4>
@@ -142,9 +146,6 @@
         }
 
     </script>
-
-
-
 
 
 }

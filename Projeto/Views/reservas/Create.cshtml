@@ -14,7 +14,7 @@
         <br />
         <h4>Faça sua reserva</h4>
         <hr />
-     
+
         <div class="form-group row mt-2">
             <div class="col-md-4">
                 <label class="form-label">Data inicial</label>
@@ -32,22 +32,40 @@
             <label class="form-label">Valor total da estadia</label>
             @Html.TextBoxFor(model => model.ValorTotal, "R$00,00", new { @class = "form-control", @placeholder = "R$00,00", required = "required" })
         </div>
-        <div class="form-group row text-center mt-5">
-            <div class="col-md-offset-2 col-md-12">
-                <button type="submit" class="btn btn-primary btn-block salvar">Salvar</button>
-                <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="form-label">Ticket</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Ticket, new { @class = "form-control" })
             </div>
         </div>
+        <div class="form-group row text-center mt-5">
+            <div class="col-md-offset-2 col-md-12">
+                <button type="submit" class="btn btn-primary btn-block salvar">Salvar</button>
+                <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
+            </div>
+        </div>
+
     </div>
 }
 
+@section Scripts{
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/js/jquery.mask.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            formatInputs()
+        });
+
+
+        function formatInputs() {
+
+            $(".date").mask("00/00/0000");
+
+        }
+
+    </script>
+
+
 }

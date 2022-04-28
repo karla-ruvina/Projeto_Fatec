@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Anexs.Lib">
+      <HintPath>F:\Atalhos\Anexs\Dlls\Anexs.Lib.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -130,6 +133,7 @@
     <Compile Include="Controllers\avaliacaosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\imovelsController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\reservasController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,6 +142,7 @@
     <Compile Include="Models\anuncio.cs" />
     <Compile Include="Models\avaliacao.cs" />
     <Compile Include="Models\contexto.cs" />
+    <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\imovel.cs" />
     <Compile Include="Models\reserva.cs" />
     <Compile Include="Models\usuario.cs" />
@@ -333,6 +338,7 @@
     <Content Include="Views\usuarios\Details.cshtml" />
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
+    <Content Include="Views\login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

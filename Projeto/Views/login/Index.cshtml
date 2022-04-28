@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <div class="auth-wrapper auth-v2">
+                <div class="auth-inner row m-0">
+                    <!-- Brand logo--><a class="brand-logo" href="#">
+                        <img src="~/Content/minilogo.png" style="width: 50px;" />
+                        <h2 class="brand-text text-primary ms-1 mt-2">TalkAll</h2>
+                    </a>
+                    <!-- /Brand logo-->
+                    <!-- Left Text-->
+                    <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+                        <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
+                            <img class="img-fluid" src="~/Content/logotalkall.png" />
+                            @*<img class="img-fluid" src="../../../app-assets/images/pages/login-v2.svg" alt="Login V2" />*@
+                        </div>
+                    </div>
+                    <!-- /Left Text-->
+                    <!-- Login-->
+                    <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                            <h2 class="card-title fw-bold mb-1">Bem Vindo ao Talk Campanhas! </h2>
+
+                            @using (Html.BeginForm("Logar", "Login", FormMethod.Post, new { @class = "auth-login-form mt-2", role = "form", @id = "form-login", }))
+                            {
+                                if (ViewBag.ReturnURL != null)
+                                {
+                                    <input type="hidden" value="@ViewBag.ReturnURL" name="ReturnURL" />
+                                }
+
+                                <div class="mb-1">
+                                    <label for="login-email" class="form-label">Email</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="login-email"
+                                           name="login"
+                                           placeholder="login@talkcampanhas.com"
+                                           aria-describedby="login-email"
+                                           tabindex="1"
+                                           autofocus />
+                                </div>
+
+                                <div class="mb-1">
+                                    <div class="d-flex justify-content-between">
+                                        <label class="form-label" for="login-password">Senha</label>
+                                    </div>
+                                    <div class="input-group input-group-merge form-password-toggle">
+                                        <input type="password"
+                                               class="form-control form-control-merge"
+                                               id="login-password"
+                                               name="senha"
+                                               tabindex="2"
+                                               placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                               aria-describedby="login-password" />
+                                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                    </div>
+                                </div>
+                               
+                                <button class="btn btn-primary logar w-100" type="submit" tabindex="4">Entrar</button>
+                                if (ViewBag.Erro != null)
+                                {
+                                    <div class="divider my-2">
+                                        <div class="divider-text">@ViewBag.Erro</div>
+                                    </div>
+
+                                }
+
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

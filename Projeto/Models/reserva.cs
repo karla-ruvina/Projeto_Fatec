@@ -10,8 +10,8 @@ namespace Projeto.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime DataInicial { get; set; }
-        public DateTime DataFinal { get; set; }
+        public string DataInicial { get; set; }
+        public string DataFinal { get; set; }
         public int Ticket { get; set; }
         public double ValorTotal { get; set; }
         public int IdImovel { get; set; }
