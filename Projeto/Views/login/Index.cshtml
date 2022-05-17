@@ -14,23 +14,18 @@
         <div class="content-body">
             <div class="auth-wrapper auth-v2">
                 <div class="auth-inner row m-0">
-                    <!-- Brand logo--><a class="brand-logo" href="#">
-                        <img src="~/Content/minilogo.png" style="width: 50px;" />
-                        <h2 class="brand-text text-primary ms-1 mt-2">TalkAll</h2>
-                    </a>
-                    <!-- /Brand logo-->
+                   
                     <!-- Left Text-->
                     <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
                         <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-                            <img class="img-fluid" src="~/Content/logotalkall.png" />
-                            @*<img class="img-fluid" src="../../../app-assets/images/pages/login-v2.svg" alt="Login V2" />*@
+                            <img class="img-fluid" src="~/Content/img/header.jpg" />
                         </div>
                     </div>
                     <!-- /Left Text-->
                     <!-- Login-->
                     <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                            <h2 class="card-title fw-bold mb-1">Bem Vindo ao Talk Campanhas! </h2>
+                            <h2 class="card-title fw-bold mb-1">Bem Vindo(a)!</h2>
 
                             @using (Html.BeginForm("Logar", "Login", FormMethod.Post, new { @class = "auth-login-form mt-2", role = "form", @id = "form-login", }))
                             {
@@ -68,6 +63,8 @@
                                 </div>
                                
                                 <button class="btn btn-primary logar w-100" type="submit" tabindex="4">Entrar</button>
+                                <a href="@Url.Action("Create", "usuarios")" class="nav-item nav-link text-center">Cadastre-se</a>
+
                                 if (ViewBag.Erro != null)
                                 {
                                     <div class="divider my-2">
