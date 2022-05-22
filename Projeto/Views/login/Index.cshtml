@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
 }
 
 <div class="app-content content ">
@@ -16,7 +16,7 @@
                 <div class="auth-inner row m-0">
                    
                     <!-- Left Text-->
-                    <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+                    <div class="d-none d-lg-flex col-lg-8 align-items-center" style="margin-top: 25px;">
                         <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
                             <img class="img-fluid" src="~/Content/img/header.jpg" />
                         </div>
@@ -62,7 +62,7 @@
                                 </div>
                                
                                 <button class="btn btn-primary logar w-100" type="submit" tabindex="4">Entrar</button>
-                                <a href="@Url.Action("Create", "usuarios")" class="nav-item nav-link text-center">Cadastre-se</a>
+                                <a href="@Url.Action("Create", "usuarios")" class="nav-item nav-link text-center mt-4">Cadastre-se</a>
 
                                 if (ViewBag.Erro != null)
                                 {
@@ -71,11 +71,7 @@
                                     </div>
 
                                 }
-
-
                             }
-
-
 
                         </div>
                     </div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,11 @@ namespace Projeto.Controllers
 {
     public class HomeController : Controller
     {
+        private contexto db = new contexto();
+
         public ActionResult Index()
         {
-            return View();
+            return View(db.Imoveis.ToList().Take(6));
         }
 
         public ActionResult About()

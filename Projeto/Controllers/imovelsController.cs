@@ -20,6 +20,12 @@ namespace Projeto.Controllers
             return View(db.Imoveis.ToList());
         }
 
+        // GET: imovels
+        public ActionResult List()
+        {
+            return View(db.Imoveis.ToList());
+        }
+
         // GET: imovels/Details/5
         public ActionResult Details(int? id)
         {

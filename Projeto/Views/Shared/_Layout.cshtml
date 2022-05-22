@@ -47,7 +47,7 @@
                     <div class="icon p-2 me-2">
                         <img class="img-fluid" src="~/Content/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
-                    <h1 class="m-0 text-primary">Makaan</h1>
+                    <h1 class="m-0 text-primary">Imob</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@
                         {
                             <div class="navbar-nav ms-auto">
                                 <a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Inicio</a>
-                                <a href="@Url.Action("Index", "Imovels")" class="nav-item nav-link">Imóveis</a>
+                                <a href="@Url.Action("Index", "imovels")" class="nav-item nav-link">Imóveis</a>
                                 <a href="@Url.Action("Index", "reservas", new { id = @Json.Decode(Context.User.Identity.Name).Id })" class="nav-item nav-link">Minhas Reservas</a>
                             </div>
                         }
@@ -89,7 +89,7 @@
                         <div class="navbar-nav ms-auto">
                             <a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Inicio</a>
                             <a href="@Url.Action("About", "Home")" class="nav-item nav-link">Sobre</a>
-                            <a href="@Url.Action("Index", "Imovels")" class="nav-item nav-link">Imóveis</a>
+                            <a href="@Url.Action("List", "imovels")" class="nav-item nav-link">Imóveis</a>
                             <a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Contato</a>
                         </div>
                         <a href="@Url.Action("Index", "login")" class="btn btn-primary px-3 d-none d-lg-flex mr-2" style="margin-right:15px;">Login</a>
@@ -166,10 +166,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, Todos os direitos reservados.
-
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Projetado por <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            &copy; <a class="border-bottom" href="#">Imob</a>, Todos os direitos reservados.
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
