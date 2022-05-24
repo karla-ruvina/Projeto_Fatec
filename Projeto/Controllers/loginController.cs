@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using static Projeto.Models.Credential;
+using Credential = Projeto.Models.Credential;
 
 namespace Projeto.Controllers
 {
@@ -54,16 +55,17 @@ namespace Projeto.Controllers
 
                 if (infouser != null)
                 {
-                    Models.Credential user = new Models.Credential(login, infouser.Nome, infouser.Id, infouser.TipoUsuario);
+                    FormsAuthentication.SignOut();
+                    var user = new Credential(login, infouser.Nome, infouser.Id, 0);
 
                     var authTicket = new FormsAuthenticationTicket(
-                        1,                                     // version
-                        JSON.Serialize(user),
-                        DateTime.Now,                          // created
-                        DateTime.Now.AddMinutes(600),          // expires
-                        false,                                 // persistent?
-                        CustomRoles.Locatario                  // can be used to store roles
-                    );
+                             1,                                    // version
+                             JSON.Serialize<Credential>(user),
+                             DateTime.Now,                         // created
+                             DateTime.Now.AddMinutes(60),          // expires
+                             false,                                // persistent?
+                             CustomRoles.Locatario                 // can be used to store roles
+                             );
 
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
 
@@ -73,18 +75,18 @@ namespace Projeto.Controllers
                     Response.Cookies.Add(authCookie);
                     HttpContext.Response.Cookies.Add(authCookie);
                     HttpContext.Request.Cookies.Add(authCookie);
-
                     string decodedUrl = "";
+
                     if (!string.IsNullOrEmpty(ReturnURL))
                         decodedUrl = Server.UrlDecode(ReturnURL);
-
                     if (!string.IsNullOrEmpty(ReturnURL) && Url.IsLocalUrl(decodedUrl))
                     {
                         return Redirect(decodedUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Painel");
+
+                        return RedirectToAction("Index", "Home");
                     }
 
                 }

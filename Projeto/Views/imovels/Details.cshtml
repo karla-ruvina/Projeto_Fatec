@@ -2,97 +2,31 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>imovel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CpfCnpj)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CpfCnpj)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rua)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rua)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bairro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bairro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Numero)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorDiaria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorDiaria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdProprietario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdProprietario)
-        </dd>
-
-    </dl>
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100"  src="~/Content/img/property-1.jpg" />
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4"> @Html.DisplayFor(model => model.BreveDescricao)</h1>
+                <p class="mb-4">@Html.DisplayFor(model => model.Descricao)</p>
+                <p><i class="fa fa-check text-primary me-3"></i>@Html.DisplayFor(model => model.Tamanho) m²</p>
+                <p><i class="fa fa-check text-primary me-3"></i>@Html.DisplayFor(model => model.QtdQuartos) quartos</p>
+                <p><i class="fa fa-check text-primary me-3"></i>@Html.DisplayFor(model => model.QtdBanheiros) banheiros</p>
+                <p class="mb-4">Localizada em @Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Estado)</p>
+                <p class="mb-4">Rua @Html.DisplayFor(model => model.Rua) - @Html.DisplayFor(model => model.Numero), @Html.DisplayFor(model => model.Bairro) </p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="">Reservar</a>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- About End -->

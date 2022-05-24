@@ -13,7 +13,34 @@ namespace Projeto.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Imoveis.ToList().Take(6));
+            var lista = (from i in db.Imoveis
+                         select new
+                         {
+                             i.Id,
+                             i.TipoImovel,
+                             i.ValorDiaria,
+                             i.BreveDescricao,
+                             i.Cidade,
+                             i.Estado,
+                             i.Tamanho,
+                             i.QtdQuartos,
+                             i.QtdBanheiros
+                         }).ToList()
+                             .Select(c => new imovel
+                             {
+                                 Id = c.Id,
+                                 TipoImovel = c.TipoImovel,
+                                 ValorDiaria = c.ValorDiaria,
+                                 BreveDescricao = c.BreveDescricao,
+                                 Cidade = c.Cidade,
+                                 Estado = c.Estado,
+                                 Tamanho = c.Tamanho,
+                                 QtdQuartos = c.QtdQuartos,
+                                 QtdBanheiros = c.QtdBanheiros,
+
+                             }).ToList().Take(3);
+
+            return View(lista);
         }
 
         public ActionResult About()
