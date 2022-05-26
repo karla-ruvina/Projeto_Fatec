@@ -54,12 +54,10 @@ namespace Projeto.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Descricao,BreveDescricao,CpfCnpj,Cep,Estado,Cidade,Rua,Bairro,Numero,ValorDiaria,IdProprietario,TipoImovel,QtdQuartos,QtdBanheiros,Tamanho")] imovel imovel)
         {
-            if (ModelState.IsValid)
-            {
-                db.Imoveis.Add(imovel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+
+            db.Imoveis.Add(imovel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
             return View(imovel);
         }

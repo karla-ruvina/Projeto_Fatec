@@ -36,14 +36,15 @@ namespace Projeto.Controllers
         }
 
         // GET: reservas/Create
-        public ActionResult Create()
+        public ActionResult Create(int idImovel)
         {
+            var imb = db.Imoveis.First(c => c.Id == idImovel);
+
+            ViewBag.NomeImovel = imb.BreveDescricao;
+            ViewBag.Imovel = idImovel;
             return View();
         }
 
-        // POST: reservas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DataInicial,DataFinal,Ticket,ValorTotal,IdImovel,IdCliente")] reserva reserva)

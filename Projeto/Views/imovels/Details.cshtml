@@ -24,7 +24,7 @@
                 <p><i class="fa fa-check text-primary me-3"></i>@Html.DisplayFor(model => model.QtdBanheiros) banheiros</p>
                 <p class="mb-4">Localizada em @Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Estado)</p>
                 <p class="mb-4">Rua @Html.DisplayFor(model => model.Rua) - @Html.DisplayFor(model => model.Numero), @Html.DisplayFor(model => model.Bairro) </p>
-                <a class="btn btn-primary py-3 px-5 mt-3" href="">Reservar</a>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="@Url.Action("Create", "reservas", new {idImovel = Model.Id })">Reservar</a>
             </div>
         </div>
     </div>

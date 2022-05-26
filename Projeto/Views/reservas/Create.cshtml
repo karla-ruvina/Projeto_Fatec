@@ -12,9 +12,9 @@
 
     <div class="form-horizontal container" style="padding: 0 3rem;">
         <br />
-        <h4>Faça sua reserva</h4>
+        <h4>Faça sua reserva do imóvel: @ViewBag.NomeImovel</h4>
         <hr />
-
+        @Html.Hidden("IdImovel")
         <div class="form-group row mt-2">
             <div class="col-md-4">
                 <label class="form-label">Data inicial</label>
@@ -55,6 +55,9 @@
     <script>
 
         $(document).ready(function () {
+
+            $("IdImovel").val(@ViewBag.Imovel)
+
             formatInputs()
         });
 
