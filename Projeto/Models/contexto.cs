@@ -17,7 +17,5 @@ namespace Projeto.Models
         public DbSet<imovel> Imoveis { get; set; }
         public DbSet<usuario> Usuarios { get; set; }
         public DbSet<reserva> Reservas { get; set; }
-        public DbSet<anuncio> Anuncios { get; set; }
-        public DbSet<avaliacao> Avaliacaos { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace Projeto.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descricao,BreveDescricao,CpfCnpj,Cep,Estado,Cidade,Rua,Bairro,Numero,ValorDiaria,IdProprietario,TipoImovel,QtdQuartos,QtdBanheiros,Tamanho")] imovel imovel)
+        public ActionResult Create([Bind(Include = "Id,Descricao,BreveDescricao,Cep,Estado,Cidade,Rua,Bairro,Numero,ValorDiaria,IdProprietario,TipoImovel,QtdQuartos,QtdBanheiros,Tamanho")] imovel imovel)
         {
 
             db.Imoveis.Add(imovel);

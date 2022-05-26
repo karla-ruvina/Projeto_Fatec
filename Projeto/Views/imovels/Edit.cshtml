@@ -16,15 +16,11 @@
             <hr />
 
             <div class="form-group row mt-2">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <label class="form-label">Breve Descrição</label>
                     @Html.TextBoxFor(model => model.BreveDescricao, new { @class = "form-control" })
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">CPF/CNPJ</label>
-                    @Html.TextBoxFor(model => model.CpfCnpj, new { @class = "form-control  cpf-cnpj-mask" })
-                </div>
-                <div class="col-md-2">
                     <label class="form-label" style="display: block">Valor da Diária</label>
                     @Html.TextBoxFor(model => model.ValorDiaria, new { @class = "form-control" })
                 </div>

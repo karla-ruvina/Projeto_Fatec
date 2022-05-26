@@ -12,7 +12,6 @@ namespace Projeto.Models
         public int Id { get; set; }
         public string Descricao { get; set; }
         public string BreveDescricao { get; set; }
-        public string CpfCnpj { get; set; }
         public string Cep { get; set; }
         public string Estado { get; set; }
         public string Cidade { get; set; }

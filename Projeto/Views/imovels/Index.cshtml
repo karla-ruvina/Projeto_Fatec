@@ -17,9 +17,6 @@
                 Descricao
             </th>
             <th>
-               CNPJ
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
             <th>
@@ -38,9 +35,6 @@
                     @Html.DisplayFor(modelItem => item.BreveDescricao)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CpfCnpj)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Cidade)
                 </td>
                 <td>
@@ -48,7 +42,7 @@
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.ValorDiaria)
+                    @Html.DisplayFor(modelItem => item.ValorDiaria.ToString("C"))
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
