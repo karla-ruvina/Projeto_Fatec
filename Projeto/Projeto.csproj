@@ -129,8 +129,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\anunciosController.cs" />
-    <Compile Include="Controllers\avaliacaosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\imovelsController.cs" />
     <Compile Include="Controllers\loginController.cs" />
@@ -139,8 +137,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\anuncio.cs" />
-    <Compile Include="Models\avaliacao.cs" />
     <Compile Include="Models\contexto.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\imovel.cs" />
@@ -322,16 +318,6 @@
     <Content Include="Views\imovels\Details.cshtml" />
     <Content Include="Views\imovels\Edit.cshtml" />
     <Content Include="Views\imovels\Index.cshtml" />
-    <Content Include="Views\anuncios\Create.cshtml" />
-    <Content Include="Views\anuncios\Delete.cshtml" />
-    <Content Include="Views\anuncios\Details.cshtml" />
-    <Content Include="Views\anuncios\Edit.cshtml" />
-    <Content Include="Views\anuncios\Index.cshtml" />
-    <Content Include="Views\avaliacaos\Create.cshtml" />
-    <Content Include="Views\avaliacaos\Delete.cshtml" />
-    <Content Include="Views\avaliacaos\Details.cshtml" />
-    <Content Include="Views\avaliacaos\Edit.cshtml" />
-    <Content Include="Views\avaliacaos\Index.cshtml" />
     <Content Include="Views\reservas\Create.cshtml" />
     <Content Include="Views\reservas\Delete.cshtml" />
     <Content Include="Views\reservas\Details.cshtml" />

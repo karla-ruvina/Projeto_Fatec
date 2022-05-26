@@ -118,24 +118,24 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
-                    @foreach (var item in Model)
+                    @for (int i = 0; i < Model.Count(); i++)
                     {
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
-                                    <a href="@Url.Action("Details", "imovels", new { id = item.Id })"><img class="img-fluid" src="~/Content/img/property-1.jpg" alt=""></a>
+                                    <a href="@Url.Action("Details", "imovels", new { id = Model[i].Id })"><img class="img-fluid" src="~/Content/img/property-1.jpg" alt=""></a>
                                     <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Alugar</div>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">@item.TipoImovel</div>
+                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">@Model[i].TipoImovel</div>
                                 </div>
                                 <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">@item.ValorDiaria.ToString("C") - diária</h5>
-                                    <a class="d-block h5 mb-2" href="">@item.BreveDescricao</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>@item.Cidade - @item.Estado</p>
+                                    <h5 class="text-primary mb-3">@Model[i].ValorDiaria.ToString("C") - diária</h5>
+                                    <a class="d-block h5 mb-2" href="">@Model[i].BreveDescricao</a>
+                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>@Model[i].Cidade - @Model[i].Estado</p>
                                 </div>
                                 <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>@item.Tamanho m²</small>
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>@item.QtdQuartos quartos</small>
-                                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>@item.QtdBanheiros banheiros</small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>@Model[i].Tamanho m²</small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>@Model[i].QtdQuartos quartos</small>
+                                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>@Model[i].QtdBanheiros banheiros</small>
                                 </div>
                             </div>
                         </div>
