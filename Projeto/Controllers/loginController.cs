@@ -6,22 +6,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using static Projeto.Models.Credential;
-using Credential = Projeto.Models.Credential;
 
 namespace Projeto.Controllers
 {
     public class loginController : Controller
     {
 
-        private contexto db = new contexto();
+        contexto db = new contexto();
 
         // GET: login
         public ActionResult Index(string msg = null, string ReturnUrl = null)
         {
             if (Models.Credential.Current.Id > 0)
             {
-                return RedirectToAction("Index", "Painel");
+                return RedirectToAction("Index", "Home");
             }
 
             if (msg != null)
@@ -56,15 +54,16 @@ namespace Projeto.Controllers
                 if (infouser != null)
                 {
                     FormsAuthentication.SignOut();
-                    var user = new Credential(login, infouser.Nome, infouser.Id, 0);
+
+                    Models.Credential user = new Models.Credential(login, infouser.Nome, infouser.Id, infouser.TipoUsuario);
 
                     var authTicket = new FormsAuthenticationTicket(
                              1,                                    // version
-                             JSON.Serialize<Credential>(user),
+                             JSON.Serialize<Models.Credential>(user),
                              DateTime.Now,                         // created
                              DateTime.Now.AddMinutes(60),          // expires
                              false,                                // persistent?
-                             CustomRoles.Locatario                 // can be used to store roles
+                             ""                                    // can be used to store roles
                              );
 
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);

@@ -46,12 +46,12 @@ namespace Projeto.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,CpfCnpj,DataNascimento,Sexo,Cep,Estado,Cidade,Rua,Bairro,Numero,Telefone,Celular,Login,Senha,Email")] usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Nome,CpfCnpj,DataNascimento,Sexo,Cep,Estado,Cidade,Rua,Bairro,Numero,Telefone,Celular,Login,Senha,Email,TipoUsuario")] usuario usuario)
         {
             
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "login");
             
         }
 
@@ -75,14 +75,13 @@ namespace Projeto.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,CpfCnpj,DataNascimento,Sexo,Cep,Estado,Cidade,Rua,Bairro,Numero,Telefone,Celular,Login,Senha,Email")] usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,Nome,CpfCnpj,DataNascimento,Sexo,Cep,Estado,Cidade,Rua,Bairro,Numero,Telefone,Celular,Login,Senha,Email,TipoUsuario")] usuario usuario)
         {
-            if (ModelState.IsValid)
-            {
+           
                 db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+        
             return View(usuario);
         }
 

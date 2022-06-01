@@ -1,6 +1,4 @@
-﻿@using System.Web
-<!DOCTYPE html>
-<html lang="en">
+﻿<html class="loading" lang="en" data-textdirection="ltr">
 <head>
     <meta charset="utf-8">
     <title>Imobiliaria</title>
@@ -29,6 +27,7 @@
 
     <!-- Template Stylesheet -->
     <link href="~/Content/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -43,30 +42,25 @@
         <!-- Navbar Start -->
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
-                    <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="~/Content/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
-                    </div>
-                    <h1 class="m-0 text-primary">Imob</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
 
+                @if (Context.User.Identity != null && Context.User.Identity.Name != null && Context.User.Identity.Name != "")
+                {
+                    var UserFull = @Json.Decode(Context.User.Identity.Name).Nome;
+                    var Tipo = @Json.Decode(Context.User.Identity.Name).TipoUsuario;
+                    var Nome = UserFull.Split(' ')[0];
 
-                    @if (Context.User.Identity != null && Context.User.Identity.Name != null && Context.User.Identity.Name != "")
-                    {
-                        var UserFull = @Json.Decode(Context.User.Identity.Name).Nome;
-                        var Tipo = @Json.Decode(Context.User.Identity.Name).TipoUsuario;
-                        var Nome = UserFull.Split(' ')[0];
+                    <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                        <div class="icon p-2 me-2">
+                            <img class="img-fluid" src="~/Content/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+                        </div>
+                        <h1 class="m-0 text-primary">Olá, @Nome</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
 
-                        <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">@Nome</span><span class="user-status">@(Tipo == "Locador" ? "Locador": "Locatário") </span></div>
-                        <span class="avatar">
-                            <img class="round" src="~/Content/minilogo.png" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span>
-                        </span>
-
-                        if (Tipo == "Locador")
+                        @if (Projeto.Models.Credential.IsLocatario())
                         {
 
                             <div class="navbar-nav ms-auto">
@@ -74,29 +68,31 @@
                                 <a href="@Url.Action("Index", "imovels", new { id = @Json.Decode(Context.User.Identity.Name).Id })" class="nav-item nav-link">Meus Imóveis</a>
                                 <a href="@Url.Action("Index", "reservas", new { id = @Json.Decode(Context.User.Identity.Name).Id })" class="nav-item nav-link">Minhas Reservas</a>
                             </div>
+                            <a href="@Url.Action("LogOff", "login")" class="btn btn-primary px-3 d-none d-lg-flex mr-2" style="margin-right:15px;">Sair</a>
                         }
-                        else if (Tipo = "Locatario")
+                        else if (Projeto.Models.Credential.IsLocador())
                         {
                             <div class="navbar-nav ms-auto">
                                 <a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Inicio</a>
-                                <a href="@Url.Action("Index", "imovels")" class="nav-item nav-link">Imóveis</a>
+                                <a href="@Url.Action("List", "imovels")" class="nav-item nav-link">Imóveis</a>
                                 <a href="@Url.Action("Index", "reservas", new { id = @Json.Decode(Context.User.Identity.Name).Id })" class="nav-item nav-link">Minhas Reservas</a>
                             </div>
+                            <a href="@Url.Action("LogOff", "login")" class="btn btn-primary px-3 d-none d-lg-flex mr-2" style="margin-right:15px;">Sair</a>
                         }
-                    }
-                    else
-                    {
-                        <div class="navbar-nav ms-auto">
-                            <a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Inicio</a>
-                            <a href="@Url.Action("About", "Home")" class="nav-item nav-link">Sobre</a>
-                            <a href="@Url.Action("List", "imovels")" class="nav-item nav-link">Imóveis</a>
-                            <a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Contato</a>
-                        </div>
-                        <a href="@Url.Action("Index", "login")" class="btn btn-primary px-3 d-none d-lg-flex mr-2" style="margin-right:15px;">Login</a>
-                        <a href="@Url.Action("Create", "usuarios")" class="btn btn-primary px-3 d-none d-lg-flex">Cadastre-se</a>
-                    }
+                        else
+                        {
+                            <div class="navbar-nav ms-auto">
+                                <a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Inicio</a>
+                                <a href="@Url.Action("About", "Home")" class="nav-item nav-link">Sobre</a>
+                                <a href="@Url.Action("List", "imovels")" class="nav-item nav-link">Imóveis</a>
+                                <a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Contato</a>
+                            </div>
+                            <a href="@Url.Action("Index", "login")" class="btn btn-primary px-3 d-none d-lg-flex mr-2" style="margin-right:15px;">Login</a>
+                            <a href="@Url.Action("Create", "usuarios")" class="btn btn-primary px-3 d-none d-lg-flex">Cadastre-se</a>
+                        }
 
-                </div>
+                    </div>
+                }
             </nav>
         </div>
         <!-- Navbar End -->

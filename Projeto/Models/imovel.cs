@@ -19,11 +19,11 @@ namespace Projeto.Models
         public string Bairro { get; set; }
         public string Numero { get; set; }
         public double ValorDiaria { get; set; }
-        public int IdProprietario { get; set; }
         public string TipoImovel { get; set; }
         public int QtdQuartos { get; set; }
         public int QtdBanheiros { get; set; }
         public int Tamanho { get; set; }
+        public int IdProprietario { get; set; }
         public virtual usuario UsuarioProprietario { get; set; }
     }
 }

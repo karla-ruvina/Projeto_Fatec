@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Salvar", "Imovels", FormMethod.Post, new { id = "form-imoveis", role = "form", @autocomplete = "off" }))
 {
     @Html.AntiForgeryToken()
 
@@ -30,7 +30,7 @@
             <div class="form-group row mt-2">
                 <div class="col-md-4">
                     <label class="form-label">CEP</label>
-                    @Html.TextBoxFor(model => model.Cep, new { @class = "form-control cep-mask", required = "required" })
+                    @Html.TextBoxFor(model => model.Cep, new { @class = "form-control cep-mask" })
                 </div>
 
                 <div class="col-md-4">

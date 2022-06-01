@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Salvar", "reservas", FormMethod.Post, new { id = "form-reserva", role = "form", @autocomplete = "off" }))
 {
     @Html.AntiForgeryToken()
 
@@ -14,34 +14,35 @@
         <br />
         <h4>Faça sua reserva do imóvel: @ViewBag.NomeImovel</h4>
         <hr />
+
         @Html.Hidden("IdImovel")
-        <div class="form-group row mt-2">
-            <div class="col-md-4">
+        @Html.Hidden("ValorDiaria")
+        <div class="form-group row mt-5">
+            <div class="col-md-3">
                 <label class="form-label">Data inicial</label>
-                @Html.TextBoxFor(model => model.DataInicial, "{0:dd/MM/yyyy}", new { @class = "form-control date", @placeholder = "__/__/____", required = "required", type="date" })
+                @Html.TextBoxFor(model => model.DataInicial, new { @class = "form-control date datepickere",  required = "required" })
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label class="form-label">Data final</label>
-                @Html.TextBoxFor(model => model.DataFinal, "{0:dd/MM/yyyy}", new { @class = "form-control date", @placeholder = "__/__/____", required = "required" })
+                @Html.TextBoxFor(model => model.DataFinal, new { @class = "form-control date datepicker", required = "required" })
             </div>
-        </div>
 
-
-        <div class="col-md-4">
-            <label class="form-label">Valor total da estadia</label>
-            @Html.TextBoxFor(model => model.ValorTotal, "R$00,00", new { @class = "form-control", @placeholder = "R$00,00", required = "required" })
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Ticket</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Ticket, new { @class = "form-control" })
+            <div class="col-md-3">
+                <label class="form-label">Total de Diárias</label>
+                @Html.TextBox("TotalDiarias", 0, new { @class = "form-control" })
             </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Valor total da estadia</label>
+                @Html.TextBoxFor(model => model.ValorTotal, new { @class = "form-control decimal", required = "required" })
+            </div>
+
         </div>
+
         <div class="form-group row text-center mt-5">
             <div class="col-md-offset-2 col-md-12">
-                <button type="submit" class="btn btn-primary btn-block salvar">Salvar</button>
+                <button type="submit" class="btn btn-primary btn-block salvar">Reservar</button>
                 <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
             </div>
         </div>
@@ -52,11 +53,16 @@
 @section Scripts{
 
     <script src="~/Content/js/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" integrity="sha512-cViKBZswH231Ui53apFnPzem4pvG8mlCDrSyZskDE9OK2gyUd/L08e1AC0wjJodXYZ1wmXEuNimN1d3MWG7jaQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/i18n/jquery-ui-i18n.min.js" integrity="sha512-3RBB8DFGvkwstHNuKlurNsKeVs7grKO/y8bsEcbEYEvaL3rTFdbCmNB3ezQmlOEYu5DzVshSAxYid6Cz2R7chg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/i18n/jquery.ui.datepicker-pt-BR.min.js" integrity="sha512-pxqrJXzEDsWH/LY1r1kD9KEdQjW0D7hBndZ/OGYv1LXDQyAK2C2wed0JxUeD4vUiEerNIhSO2PXnj5+EeffBPA==" crossorigin="anonymous"></script>
+
     <script>
 
         $(document).ready(function () {
 
-            $("IdImovel").val(@ViewBag.Imovel)
+            $("#IdImovel").val(@ViewBag.Imovel)
+            $("#ValorDiaria").val(@ViewBag.ValorDiaria)
 
             formatInputs()
         });
@@ -65,8 +71,37 @@
         function formatInputs() {
 
             $(".date").mask("00/00/0000");
-
+            $('.decimal').mask("#.##0,00", { reverse: true });
         }
+
+        // Muda layout da linha de evento ao mudar o tipo
+        $(document).on('keyup change', `[name$="DataInicial"], [name$="DataFinal"] `, function (e, flag_propagated) {
+            e.stopPropagation()
+
+            if (!flag_propagated) {
+
+                var dataIniArr = $(`[name$="DataInicial"]`).val().split("/")
+                var dataFimArr = $(`[name$="DataFinal"]`).val().split("/")
+                var calc = Math.floor((new Date(`${dataFimArr[2]}-${dataFimArr[1]}-${dataFimArr[0]}`).getTime()) - (new Date(`${dataIniArr[2]}-${dataIniArr[1]}-${dataIniArr[0]}`).getTime()) + 1);
+                var result = Math.ceil(calc / (1000 * 60 * 60 * 24));
+
+                if (result > 0 && result != undefined) {
+                    $(`[name$="TotalDiarias"]`).val(result)
+
+                    var valor = result * $("#ValorDiaria").val()
+
+                    var total = (valor != null) ? new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(valor) : ""
+
+                    $("#ValorTotal").val(total)
+
+                } else {
+                    $(`[name$="TotalDiarias"]`).val(0)
+                }
+
+            }
+        });
+
+
 
     </script>
 

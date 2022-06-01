@@ -36,10 +36,27 @@ namespace Projeto.Models
             }
         }
 
-        public static class CustomRoles
+        public static string GetName()
         {
-            public const string Locador = "Locador";
-            public const string Locatario = "Locatario";
+            return Credential.Current.Nome;
+        }
+
+        public static bool IsLocador()
+        {
+            contexto db = new contexto();
+
+            var iduser = Credential.Current.Id;
+            var usuario = db.Usuarios.FirstOrDefault(c => c.Id == iduser);
+            return usuario.TipoUsuario == 0 ? true : false;
+        }
+
+        public static bool IsLocatario()
+        {
+            contexto db = new contexto();
+
+            var iduser = Credential.Current.Id;
+            var usuario = db.Usuarios.FirstOrDefault(c => c.Id == iduser);
+            return usuario.TipoUsuario == 1 ? true : false;
         }
 
     }

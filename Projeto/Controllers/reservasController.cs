@@ -42,18 +42,37 @@ namespace Projeto.Controllers
 
             ViewBag.NomeImovel = imb.BreveDescricao;
             ViewBag.Imovel = idImovel;
+            ViewBag.ValorDiaria = imb.ValorDiaria.ToString().Replace(",",".");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DataInicial,DataFinal,Ticket,ValorTotal,IdImovel,IdCliente")] reserva reserva)
+        public ActionResult Salvar(reserva model)
         {
-          
-                db.Reservas.Add(reserva);
+            try
+            {
+                var obj = model.Id > 0 ? db.Reservas.SingleOrDefault(c => c.Id == model.Id) : new reserva();
+                obj.DataInicial = model.DataInicial;
+                obj.DataFinal = model.DataFinal;
+                obj.IdImovel = model.IdImovel;
+                obj.IdCliente = Credential.Current.Id;
+                obj.ValorTotal = model.ValorTotal;
+
+                if (obj.Id == 0)
+                {
+                    db.Reservas.Add(obj);
+                }
                 db.SaveChanges();
-                return RedirectToAction("Index");
-           
+
+                return RedirectToAction("Index", new { id = Credential.Current.Id });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("Create", model);
+            }
+
         }
 
         // GET: reservas/Edit/5

@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Salvar", "Imovels", FormMethod.Post, new { id = "form-imoveis", role = "form", @autocomplete = "off" }))
 {
     @Html.AntiForgeryToken()
 

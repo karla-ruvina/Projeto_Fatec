@@ -15,9 +15,9 @@ namespace Projeto.Controllers
         private contexto db = new contexto();
 
         // GET: imovels
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Imoveis.ToList());
+            return View(db.Imoveis.Where(c=> c.IdProprietario == id).ToList());
         }
 
         // GET: imovels
@@ -50,16 +50,42 @@ namespace Projeto.Controllers
         // POST: imovels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descricao,BreveDescricao,Cep,Estado,Cidade,Rua,Bairro,Numero,ValorDiaria,IdProprietario,TipoImovel,QtdQuartos,QtdBanheiros,Tamanho")] imovel imovel)
+        public ActionResult Salvar(imovel model)
         {
+            try
+            {
+                var obj = model.Id > 0 ? db.Imoveis.SingleOrDefault(c => c.Id == model.Id) : new imovel();
+                obj.Descricao = model.Descricao;
+                obj.BreveDescricao = model.BreveDescricao;
+                obj.Cep = model.Cep;
+                obj.Estado = model.Estado;
+                obj.Cidade = model.Cidade;
+                obj.Rua = model.Rua;
+                obj.Bairro = model.Bairro;
+                obj.Numero = model.Numero;
+                obj.ValorDiaria = model.ValorDiaria;
+                obj.IdProprietario = Credential.Current.Id;
+                obj.TipoImovel = model.TipoImovel;
+                obj.QtdQuartos = model.QtdQuartos;
+                obj.QtdBanheiros = model.QtdBanheiros;
+                obj.Tamanho = model.Tamanho;
 
-            db.Imoveis.Add(imovel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                if (obj.Id == 0)
+                {
+                    db.Imoveis.Add(obj);
+                }
+                db.SaveChanges();
 
-            return View(imovel);
+                return RedirectToAction("Index", new { id = Credential.Current.Id});
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("Create", model);
+            }
         }
 
         // GET: imovels/Edit/5
@@ -77,21 +103,6 @@ namespace Projeto.Controllers
             return View(imovel);
         }
 
-        // POST: imovels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descricao,BreveDescricao,CpfCnpj,Cep,Estado,Cidade,Rua,Bairro,Numero,ValorDiaria,IdProprietario,TipoImovel,QtdQuartos,QtdBanheiros,Tamanho")] imovel imovel)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(imovel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(imovel);
-        }
 
         // GET: imovels/Delete/5
         public ActionResult Delete(int? id)

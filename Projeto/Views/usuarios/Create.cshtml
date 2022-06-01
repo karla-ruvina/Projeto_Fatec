@@ -104,9 +104,9 @@
             <div class="form-group row mt-2 text-center">
                 <div class="col-md-12">
                     <label class="form-label">Locador</label>
-                    @Html.RadioButtonFor(model => model.TipoUsuario, "Locador", new { @style="margin-right:15px;"})
+                    @Html.RadioButtonFor(model => model.TipoUsuario, 0, new { @style="margin-right:15px;"})
                     <label class="form-label">Locatário</label>
-                    @Html.RadioButtonFor(model => model.TipoUsuario, "Locatario")
+                    @Html.RadioButtonFor(model => model.TipoUsuario, 1)
                 </div>
             </div>
 
