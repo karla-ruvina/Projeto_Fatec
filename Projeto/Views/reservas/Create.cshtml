@@ -10,48 +10,53 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal container" style="padding: 0 3rem;">
-        <br />
-        <h4>Faça sua reserva do imóvel: @ViewBag.NomeImovel</h4>
-        <hr />
+<div class="form-horizontal container" style="padding: 0 3rem;">
+    <br />
+    <h4>Faça sua reserva do imóvel:</h4>
+    <hr />
 
-        @Html.Hidden("IdImovel")
-        @Html.Hidden("ValorDiaria")
-        <div class="form-group row mt-5">
-            <div class="col-md-3">
-                <label class="form-label">Data inicial</label>
-                @Html.TextBoxFor(model => model.DataInicial, new { @class = "form-control date datepicker", required = "required", type = "date" })
-            </div>
+    <div class="p-4 pb-0">
+        <h5 class="text-primary mb-3">@ViewBag.NomeImovel, Diária: R$@ViewBag.ValorDiaria</h5>
+        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>@ViewBag.Cidade - @ViewBag.Estado</p>
+    </div>
 
-            <div class="col-md-3">
-                <label class="form-label">Data final</label>
-                @Html.TextBoxFor(model => model.DataFinal, new { @class = "form-control date datepicker", required = "required", type = "date" })
-            </div>
-
-            <div class="col-md-3">
-                <label class="form-label">Total de Diárias</label>
-                @Html.TextBox("TotalDiarias", 0, new { @class = "form-control" })
-            </div>
-
-            <div class="col-md-3">
-                <label class="form-label">Valor total da estadia</label>
-                @Html.TextBoxFor(model => model.ValorTotal, new { @class = "form-control decimal", required = "required" })
-            </div>
-
+    @Html.Hidden("IdImovel")
+    @Html.Hidden("ValorDiaria")
+    <div class="form-group row mt-5">
+        <div class="col-md-3">
+            <label class="form-label">Data inicial</label>
+            @Html.TextBoxFor(model => model.DataInicial, new { @class = "form-control date datepicker", required = "required", type = "date" })
         </div>
 
-        <div class="form-group row text-center mt-5">
-            <h4 class="invalid-feedback" id="avisar-data"></h4>
+        <div class="col-md-3">
+            <label class="form-label">Data final</label>
+            @Html.TextBoxFor(model => model.DataFinal, new { @class = "form-control date datepicker", required = "required", type = "date" })
         </div>
 
-        <div class="form-group row text-center mt-5">
-            <div class="col-md-offset-2 col-md-12">
-                <button type="submit" class="btn btn-primary btn-block salvar">Reservar</button>
-                <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
-            </div>
+        <div class="col-md-3">
+            <label class="form-label">Total de Diárias</label>
+            @Html.TextBox("TotalDiarias", 0, new { @class = "form-control", @readonly="readonly" })
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Valor total da estadia</label>
+            @Html.TextBoxFor(model => model.ValorTotal, new { @class = "form-control decimal", @readonly = "readonly" })
         </div>
 
     </div>
+
+    <div class="form-group row text-center mt-5">
+        <h4 class="invalid-feedback" id="avisar-data"></h4>
+    </div>
+
+    <div class="form-group row text-center mt-5">
+        <div class="col-md-offset-2 col-md-12">
+            <button type="submit" class="btn btn-primary btn-block salvar">Reservar</button>
+            <button onclick="history.back()" class="btn btn-secondary btn-block">Voltar</button>
+        </div>
+    </div>
+
+</div>
 }
 
 @section Scripts{

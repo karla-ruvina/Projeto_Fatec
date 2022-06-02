@@ -42,6 +42,8 @@ namespace Projeto.Controllers
             var imb = db.Imoveis.First(c => c.Id == idImovel);
 
             ViewBag.NomeImovel = imb.BreveDescricao;
+            ViewBag.Cidade = imb.Cidade;
+            ViewBag.Estado = imb.Estado;
             ViewBag.Imovel = idImovel;
             ViewBag.ValorDiaria = imb.ValorDiaria.ToString().Replace(",", ".");
             return View();
@@ -145,12 +147,11 @@ namespace Projeto.Controllers
         public JsonResult VerificarAgenda(DateTime datainicio, DateTime datafim, int idImovel = 0)
         {
             var horario = db.Reservas.Where(c =>
-            c.IdImovel == idImovel);
+            c.IdImovel == idImovel).ToList();
+            
+            horario = horario.Where(c => c.DataInicial.ToDate() <= datainicio && c.DataFinal.ToDate() >= datafim).ToList();
 
-            datafim = datafim.Date.AddHours(23).AddMinutes(59);
-            horario = horario.Where(c => c.DataInicial.ToDate() >= datainicio && c.DataFinal.ToDate() <= datafim);
-
-            if (horario != null)
+            if (horario.Count() > 0)
             {
                 var exists = true;
 
