@@ -20,12 +20,12 @@
         <div class="form-group row mt-5">
             <div class="col-md-3">
                 <label class="form-label">Data inicial</label>
-                @Html.TextBoxFor(model => model.DataInicial, new { @class = "form-control date datepickere",  required = "required" })
+                @Html.TextBoxFor(model => model.DataInicial, new { @class = "form-control date datepicker", required = "required", type = "date" })
             </div>
 
             <div class="col-md-3">
                 <label class="form-label">Data final</label>
-                @Html.TextBoxFor(model => model.DataFinal, new { @class = "form-control date datepicker", required = "required" })
+                @Html.TextBoxFor(model => model.DataFinal, new { @class = "form-control date datepicker", required = "required", type = "date" })
             </div>
 
             <div class="col-md-3">
@@ -38,6 +38,10 @@
                 @Html.TextBoxFor(model => model.ValorTotal, new { @class = "form-control decimal", required = "required" })
             </div>
 
+        </div>
+
+        <div class="form-group row text-center mt-5">
+            <h4 class="invalid-feedback" id="avisar-data"></h4>
         </div>
 
         <div class="form-group row text-center mt-5">
@@ -70,7 +74,7 @@
 
         function formatInputs() {
 
-            $(".date").mask("00/00/0000");
+            //$(".date").mask("00/00/0000");
             $('.decimal').mask("#.##0,00", { reverse: true });
         }
 
@@ -99,9 +103,36 @@
                 }
 
             }
+
+            VerificaDisponibilidade($("#IdImovel").val(), $("#DataInicial").val(), $("#DataFinal").val() );
         });
 
+        function VerificaDisponibilidade(idimovel, datainicio, datafim) {
 
+            $('#avisar-data').show();
+            $('#avisar-data').text('Verificando agenda...');
+            $.ajax({
+                url: '@Url.Action("VerificarAgenda", "reservas")',
+                data: { datainicio: datainicio, datafim: datafim, idImovel: idimovel },
+                method: 'post',
+                success: function (data) {
+                    console.log("data: " + data);
+                    if (data) {
+                        $('#avisar-data').show();
+                        $('#avisar-data').text('Data Indisponível.');
+                        $(".salvar").attr("disabled", true);
+                    }
+                    else {
+                        $('#avisar-data').hide();
+                        $('#avisar-data').text('');
+                        $(".salvar").attr("disabled", false);
+                    }
+                },
+                error: function () {
+                    $('#avisar-data').text('Informe a data fim.');
+                }
+            });
+        }
 
     </script>
 

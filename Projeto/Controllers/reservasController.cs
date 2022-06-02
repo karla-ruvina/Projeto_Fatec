@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Anexs.Lib.Extensoes;
 using Projeto.Models;
 
 namespace Projeto.Controllers
@@ -42,7 +43,7 @@ namespace Projeto.Controllers
 
             ViewBag.NomeImovel = imb.BreveDescricao;
             ViewBag.Imovel = idImovel;
-            ViewBag.ValorDiaria = imb.ValorDiaria.ToString().Replace(",",".");
+            ViewBag.ValorDiaria = imb.ValorDiaria.ToString().Replace(",", ".");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace Projeto.Controllers
                 obj.DataInicial = model.DataInicial;
                 obj.DataFinal = model.DataFinal;
                 obj.IdImovel = model.IdImovel;
-                obj.IdCliente = Credential.Current.Id;
+                obj.IdCliente = Models.Credential.Current.Id;
                 obj.ValorTotal = model.ValorTotal;
 
                 if (obj.Id == 0)
@@ -65,7 +66,7 @@ namespace Projeto.Controllers
                 }
                 db.SaveChanges();
 
-                return RedirectToAction("Index", new { id = Credential.Current.Id });
+                return RedirectToAction("Index", new { id = Models.Credential.Current.Id });
             }
             catch (Exception ex)
             {
@@ -139,6 +140,28 @@ namespace Projeto.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult VerificarAgenda(DateTime datainicio, DateTime datafim, int idImovel = 0)
+        {
+            var horario = db.Reservas.Where(c =>
+            c.IdImovel == idImovel);
+
+            datafim = datafim.Date.AddHours(23).AddMinutes(59);
+            horario = horario.Where(c => c.DataInicial.ToDate() >= datainicio && c.DataFinal.ToDate() <= datafim);
+
+            if (horario != null)
+            {
+                var exists = true;
+
+                return Json(exists, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var exists = false;
+                return Json(exists, JsonRequestBehavior.AllowGet);
+
+            }
         }
     }
 }
