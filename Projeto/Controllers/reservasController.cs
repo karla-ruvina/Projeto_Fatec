@@ -16,9 +16,9 @@ namespace Projeto.Controllers
         private contexto db = new contexto();
 
         // GET: reservas
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Reservas.ToList());
+            return View(db.Reservas.Where(c=> c.IdCliente == id).ToList());
         }
 
         // GET: reservas/Details/5

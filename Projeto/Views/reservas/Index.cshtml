@@ -4,42 +4,39 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DataInicial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataFinal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ValorTotal)
-        </th>
-        <th></th>
-    </tr>
+<div class="container">
+    <div class="p-5">
+        <h2>Minhas reservas</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInicial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataFinal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ValorTotal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <table class="table">
+        <tr>
+            <th>
+                Período
+            </th>
+            <th>
+                Valor
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    De @Html.DisplayFor(modelItem => item.DataInicial) até  @Html.DisplayFor(modelItem => item.DataFinal)
+                </td>
+                <td>
+                    @item.ValorTotal.ToString("C")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

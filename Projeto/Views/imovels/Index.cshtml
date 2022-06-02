@@ -40,9 +40,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
-
                 <td>
-                    @Html.DisplayFor(modelItem => item.ValorDiaria)
+                    @item.ValorDiaria.ToString("C")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
